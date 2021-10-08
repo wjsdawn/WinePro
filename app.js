@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var poetRouter = require('./routes/poet')
+var  paintingRouter = require('./routes/painting')
 
 var express = require('express');//这两行通过 require() 导入 Express 模块，并创建了一个 Express 应用
 var app = express();
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/',loginRouter);
 app.use('/',poetRouter);
+app.use('/',paintingRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
