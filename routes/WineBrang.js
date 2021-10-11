@@ -1,12 +1,8 @@
 var express = require('express');
 var router = express.Router();
 // 导入实列
-let modelpoet = require('../models/DrinkingGame');
-var query = modelpoet.user.find()
-var promise = query.exec();
-
-console.log(promise)
-router.post('/DrinkingGame',function(req,res){
+let modelpoet = require('../models/WineBrand');
+router.post('/WineBrand',function(req,res){
     let params = req.body;
     let param = {};
     console.log(param);
