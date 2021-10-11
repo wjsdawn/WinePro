@@ -8,8 +8,12 @@ modelpoet.user.find({},(err,data) =>{
         return
     } else {
         console.log(data[0]["name"])
-        var jsonData = data[0]["name"].toJson()
-        console.log(jsonData)
+        var array = data[0]["children"]
+        for(i in array)
+        {
+            var gameJson = JSON.stringify(array[i])
+            console.log(gameJson)
+        }
     }
 });
 // router.post('/DrinkingGame',function(req,res){
