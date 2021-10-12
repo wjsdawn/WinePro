@@ -16,7 +16,7 @@ var WineBrandRouter = require('./routes/WineBrang');
 var WinePicDataRouter = require('./routes/WinePicData');
 var WineContainersInfoRouter = require('./routes/WineContainersInfo');
 var BaiJiuWHRouter = require('./routes/BaiJiuWH')
-//var StaticalDataRouter = require('./routes/StaticalDataRouter')
+var StaticalDataRouter = require('./routes/StatisticalData')
 
 var express = require('express');//这两行通过 require() 导入 Express 模块，并创建了一个 Express 应用
 var app = express();
