@@ -47,7 +47,7 @@ app.use('/',WineBrandRouter);
 app.use('/',WinePicDataRouter);
 app.use('/',WineContainersInfoRouter);
 app.use('/',BaiJiuWHRouter);
-//app.use('/',StaticalDataRouter);
+app.use('/',StaticalDataRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
