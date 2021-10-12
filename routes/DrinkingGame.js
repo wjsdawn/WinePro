@@ -11,11 +11,17 @@ modelpoet.user.find({},(err,data) =>{
         var array = data[0]["children"]
         for(i in array)
         {
-            var gameJson = JSON.stringify(array[i])
-            console.log(gameJson)
+            var gameJson = JSON.stringify(array[i]["children"])
+            console.log(gameJson.length)
         }
     }
 });
+
+
+// function fun(object)
+// {
+//     if())
+// }
 // router.post('/DrinkingGame',function(req,res){
 //     let params = req.body;
 //     let param = {};
