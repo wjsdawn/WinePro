@@ -12,7 +12,7 @@ modelpoet.user.find({},(err,data) =>{
         for(i in array)
         {
             var gameJson = JSON.stringify(array[i]["children"])
-            console.log(gameJson.length)
+            console.log(gameJson[0])
         }
     }
 });
