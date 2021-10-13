@@ -6,78 +6,85 @@ let modelpoet = require('../models/poet');
 let modelpainting = require('../models/painting')
 let modelpoetlibai = require('../models/poetlibai')
 
-router.post('/StaticalData',function(req,res)
-{
-    param = req.body
-    //统计数据变量
-    StaticalDatas = {}
 
-    var poets
-    var paintings
-    var poetrys
-    var sites
-    var age
+let alldata = {}
+let promiser = []
 
-    //查询数据
+var p = new Promise((resolve, reject) => {
     modelpoet.user.distinct("author", function (err, res) {
         if (err) {
             return
         }
-        poets = res.length
+        alldata["poet"] = res.length
+        resolve()
     })
-
+})
+var p1 = new Promise((resolve, reject) => {
     modelpoetlibai.user.distinct("place", function (err, res) {
         if (err) {
             return
         }
-        sites = res.length
+        alldata["place"] = res.length
+        resolve()
     })
-
+})
+var p2 = new Promise((resolve, reject) => {
     modelpainting.user.count(function (err, res) {
         if (err) {
             return
         }
-        paintings = res
+        alldata["paintings"] = res
+        resolve()
     })
-
+})
+var p3 = new Promise((resolve, reject) => {
     modelpoet.user.count(function (err, res) {
         if (err) {
             return
         }
-        poetrys += res
+        alldata["poetrys"] = res
+        resolve()
     })
-
+})
+var p4 = new Promise((resolve, reject) => {
     modelpoetlibai.user.count(function (err, res) {
         if (err) {
             return
         }
-        poetrys += res
+        alldata["poetrys"] +=res
+        resolve()
     })
-
+})
+var p5 = new Promise((resolve, reject) => {
     modelpoet.user.distinct("dynasty", function (err, res) {
         if (err) {
             return
         }
-        age = res.length
+        alldata["age"] =res.length
+        resolve()
     })
+})
 
-    StaticalDatas =
-    {
-        "poetrys": poetrys,
-        "paintings": paintings,
-        "poets": poets + 1,
-        "sites": sites,
-        "age": age
-    }
 
-    res.send(
-        {
-            state: 200,
-            msg: '查询成功',
-            data: StaticalDatas
-        }
-    )
+promiser.push(p)
+promiser.push(p1)
+promiser.push(p2)
+promiser.push(p3)
+promiser.push(p4)
+promiser.push(p5)
 
-});
+//等待所有回调函数执行完成后，发送数据
+Promise.all(promiser).then(res => {
+    console.log(alldata)
+    router.post('/StatisticalData',function(req,resl){
+        resl.send(
+            {
+                state:200,
+                msg:'查询成功',
+                data:alldata
+            }
+        )
+    })
+})
 
 module.exports = router;

@@ -7,12 +7,12 @@ modelpoet.user.find({},(err,data) =>{
         res.status(500).send()
         return
     } else {
-        console.log(data[0]["name"])
+        console.log(data[1]["name"])
         var array = data[0]["children"]
         for(i in array)
         {
-            var gameJson = JSON.stringify(array[i]["children"])
-            console.log(gameJson)
+            var gameJson = JSON.stringify(array[i])
+            console.log(typeof(gameJson))
         }
     }
 });
