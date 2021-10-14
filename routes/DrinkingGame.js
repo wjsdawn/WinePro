@@ -2,17 +2,32 @@ var express = require('express');
 var router = express.Router();
 // 导入实列
 let modelpoet = require('../models/DrinkingGame');
-modelpoet.user.find({},(err,data) =>{
-    if(err){
+modelpoet.user.find({}, (err, data) => {
+    if (err) {
         res.status(500).send()
         return
     } else {
-        console.log(data[1]["name"])
-        var array = data[0]["children"]
-        for(i in array)
-        {
-            var gameJson = JSON.stringify(array[i])
-            console.log(typeof(gameJson))
+        for (index in data) {
+            console.log(data[index]["name"])
+            var array = data[index]["children"]
+            for (i in array) {
+                var gameJson = array[i]
+                children = gameJson.children
+                //console.log(gameJson.name)
+                if (children == undefined) {
+                    //TODO
+                    //console.log(gameJson.name)
+                    //console.log(gameJson.value)
+                }
+                else {
+                    for (j in children) {
+                        var gameChildren = children[j]
+                        //TODO
+                        //console.log(gameChildren.name)
+                        //console.log(gameChildren.value)
+                    }
+                }
+            }
         }
     }
 });
