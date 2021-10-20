@@ -75,7 +75,6 @@ promiser.push(p5)
 
 //等待所有回调函数执行完成后，发送数据
 Promise.all(promiser).then(res => {
-    console.log(alldata)
     router.post('/StatisticalData',function(req,resl){
         resl.send(
             {
