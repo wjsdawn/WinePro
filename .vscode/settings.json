@@ -3,5 +3,6 @@
     "editor.hover.delay": 0,
     "editor.quickSuggestionsDelay": 0,
     "workbench.hover.delay": 0,
-    "workbench.sash.hoverDelay": 0
+    "workbench.sash.hoverDelay": 0,
+    "gitlens.advanced.blame.delayAfterEdit": 0
 }
