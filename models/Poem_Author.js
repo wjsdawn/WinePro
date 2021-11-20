@@ -9,38 +9,15 @@ const getJson = async() =>{
         let count = 0
         let json={}
         neo4jDriver.session().run(query)
-            // .subscribe({
-            //     // onKeys:keys=>{
-            //     //     console.log(keys)
-            //     // },
-            //     onNext:record=>{
-            //         node.push({'name':record.get('n').properties.title})
-            //         node.push({'name':record.get('m').properties.author})
-            //         edge.push({'start':record.get('n').properties.title,'end':record.get('m').properties.author})
-            //         json = {'node':node,'edge':edge}
-            //     },
-            //     onCompleted:()=>{
-            //         return json
-            //     },
-            //     onError:error=>{
-            //         console.log(error)
-            //     }
-            // })
             .then(result=>{
                 //设置节点
                 result.records.forEach(record=>{
-                    if((JSON.stringify(node).indexOf(JSON.stringify({'name':record.get('n').properties.title})))==-1){
-                        node.push({'name':record.get('n').properties.title})
+                    if((JSON.stringify(node).indexOf(JSON.stringify({'name':record.get('n').properties.title,poem:record.get('n').properties.poem,type:'poem',explanation:record.get('n').properties.explanation})))==-1){
+                        node.push({'name':record.get('n').properties.title,poem:record.get('n').properties.poem,type:'poem',explanation:record.get('n').properties.explanation})
                     }
-                    if((JSON.stringify(node).indexOf(JSON.stringify({'name':record.get('m').properties.author})))==-1){
-                        node.push({'name':record.get('m').properties.author})
+                    if((JSON.stringify(node).indexOf(JSON.stringify({'name':record.get('m').properties.author,type:'author'})))==-1){
+                        node.push({'name':record.get('m').properties.author,type:'author'})
                     }
-                    // node.push({'name':record.get('n').properties.title})
-                    // node.push({'name':record.get('m').properties.author})
-                    // edge.push({'source':record.get('n').properties.title,'target':record.get('m').properties.author})
-                    // json = {'node':node,'edge':edge}
-                    // console.log(json)
-                    // edge.push(record.get("r").start.low)
                 })
                 //设置边
                 result.records.forEach(record=>{
@@ -70,7 +47,7 @@ const getJson = async() =>{
             })
     })
 }
-// getJson()
+getJson()
 module.exports = {getJson}
 
 
