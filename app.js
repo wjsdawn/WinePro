@@ -18,6 +18,7 @@ var WineContainersInfoRouter = require('./routes/WineContainersInfo');
 var BaiJiuWHRouter = require('./routes/BaiJiuWH')
 var StaticalDataRouter = require('./routes/StatisticalData')
 var Poem_AuthorRouter = require('./routes/Poem_Author')
+var Poem_ThemeRouter = require('./routes/Poem_Theme')
 
 var express = require('express');//这两行通过 require() 导入 Express 模块，并创建了一个 Express 应用
 var app = express();
@@ -50,6 +51,7 @@ app.use('/',WineContainersInfoRouter);
 app.use('/',BaiJiuWHRouter);
 app.use('/',StaticalDataRouter);
 app.use('/',Poem_AuthorRouter);
+app.use('/',Poem_ThemeRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
