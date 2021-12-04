@@ -12,7 +12,8 @@ const poetSchema = new Schema({
     background:String,
     time:String,
     translate:String,
-    explanation:[]
+    explanation:[],
+    Annotation:[]
 })
 //使用model 第三个参数为表名 如果第三个参数不设置则默在表名后加s users
 const Models = {

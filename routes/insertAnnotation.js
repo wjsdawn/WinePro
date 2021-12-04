@@ -14,7 +14,10 @@ router.post('/insertAnnotation',function(req,res){
     let params = req.body;
     p().then(val=>{
         params["_id"] = val + 1
-        modelInsertAnnotation.user.create(params)
+        console.log(val)
+        modelInsertAnnotation.user.create(params).then(()=>{
+            res.status(500).send()
+        })
    })
     let param = {};
 });
